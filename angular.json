@@ -27,9 +27,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/controls.css",
+              "src/amsterdam-acid-blue.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/shaka-player.ui.debug.js",
+              "src/amsterdam-acid-blue.js"
+            ]
           },
           "configurations": {
             "production": {
