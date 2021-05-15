@@ -75,18 +75,21 @@ export class ShakaPlayerComponent implements AfterViewInit {
       videoUrl = "http://demo.unified-streaming.com/video/tears-of-steel/tears-of-steel.ism/.m3u8";
     }
 
-    let captionUrl = "http://amssamples.streaming.mediaservices.windows.net/bc57e088-27ec-44e0-ac20-a85ccbcd50da/TOS-en.vtt";
+    let captionUrlEn = "http://amssamples.streaming.mediaservices.windows.net/bc57e088-27ec-44e0-ac20-a85ccbcd50da/TOS-en.vtt";
+    let captionUrlEs = "http://amssamples.streaming.mediaservices.windows.net/bc57e088-27ec-44e0-ac20-a85ccbcd50da/TOS-es.vtt";
     this.player
       .load(videoUrl)
       .then(() => {
-        this.player.addTextTrackAsync(captionUrl, "en", "subtitle", 'text/vtt').then(() => {{
-          const textTracks = this.player.getTextTracks();
-          if (textTracks.length > 0) {
-            this.player.setTextTrackVisibility(true);
-            this.player.selectTextTrack(textTracks[0]);
-          }
-          this.videoElement?.play();
-        }});
+        this.player.addTextTrackAsync(captionUrlEn, "en", "subtitle", 'text/vtt').then(() => {
+          this.player.addTextTrackAsync(captionUrlEs, "es", "subtitle", 'text/vtt').then(() => {
+            const textTracks = this.player.getTextTracks();
+            if (textTracks.length > 0) {
+              this.player.setTextTrackVisibility(true);
+              this.player.selectTextTrack(textTracks[0]);
+            }
+            this.videoElement?.play();
+          });
+        });
       })
       .catch((e: any) => {
         console.error(e);
