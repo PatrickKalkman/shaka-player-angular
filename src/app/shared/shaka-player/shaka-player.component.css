@@ -1,0 +1,10 @@
+/* Styling with UI. */
+.shaka-text-container {
+  font-size: 18pt;
+  color: red;
+}
+
+/* Styling with UI, only when fullscreen (may not be supported in some browsers). */
+.shaka-text-container:fullscreen {
+  font-size: 18pt;
+}

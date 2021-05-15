@@ -1,4 +1,5 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Platform } from '@angular/cdk/platform';
 
 declare let shaka: any;
 declare let $: any;
@@ -15,7 +16,7 @@ export class ShakaPlayerComponent implements AfterViewInit {
   videoContainerElement: HTMLDivElement | undefined;
   player: any;
 
-  constructor() {}
+  constructor(private platform: Platform) {}
 
   ngAfterViewInit(): void {
     shaka.polyfill.installAll();
@@ -37,17 +38,58 @@ export class ShakaPlayerComponent implements AfterViewInit {
       this.videoElement
     );
 
+    // const cert = fetch("YOUR FAIRPLAY CERTIFICATE URL");
+
+    // if (this.platform.SAFARI) {
+    //   this.player.configure({
+    //     preferredAudioLanguage: 'en-US',
+    //     drm: {
+    //       servers: {
+    //         'com.apple.fps.1_0': '[fairplay license server URL]',
+    //       },
+    //       advanced: {
+    //         'com.apple.fps.1_0': {
+    //           serverCertificate: new Uint8Array(cert),
+    //         },
+    //       },
+    //     },
+    //   });
+    // } else {
+    //   this.player.configure({
+    //     drm: {
+    //       servers: {
+    //         'com.widevine.alpha': '[Widevine license server URL]',
+    //       },
+    //       advanced: {
+    //         'com.widevine.alpha': {
+    //           videoRobustness: 'SW_SECURE_CRYPTO',
+    //           audioRobustness: 'SW_SECURE_CRYPTO',
+    //         },
+    //       },
+    //     },
+    //   });
+    // }
+
+    let videoUrl = "http://amssamples.streaming.mediaservices.windows.net/bc57e088-27ec-44e0-ac20-a85ccbcd50da/TearsOfSteel.ism/manifest(format=mpd-time-csf)";
+    if (this.platform.SAFARI) {
+      videoUrl = "http://demo.unified-streaming.com/video/tears-of-steel/tears-of-steel.ism/.m3u8";
+    }
+
+    let captionUrl = "http://amssamples.streaming.mediaservices.windows.net/bc57e088-27ec-44e0-ac20-a85ccbcd50da/TOS-en.vtt";
     this.player
-      .load('http://www.bok.net/dash/tears_of_steel/cleartext/stream.mpd')
+      .load(videoUrl)
       .then(() => {
-        this.videoElement?.play();
+        this.player.addTextTrackAsync(captionUrl, "en", "subtitle", 'text/vtt').then(() => {{
+          const textTracks = this.player.getTextTracks();
+          if (textTracks.length > 0) {
+            this.player.setTextTrackVisibility(true);
+            this.player.selectTextTrack(textTracks[0]);
+          }
+          this.videoElement?.play();
+        }});
       })
       .catch((e: any) => {
         console.error(e);
       });
-
-      var item = $('.shaka-overflow-menu-button');
-      item = item.html('settings');
-      $('.shaka-back-to-overflow-button .material-icons-round').html('arrow_back_ios_new');
   }
 }
