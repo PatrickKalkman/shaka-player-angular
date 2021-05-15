@@ -33,7 +33,8 @@
             ],
             "scripts": [
               "src/shaka-player.ui.debug.js",
-              "src/amsterdam-acid-blue.js"
+              "src/amsterdam-acid-blue.js",
+              "node_modules/jquery/dist/jquery.min.js"
             ]
           },
           "configurations": {

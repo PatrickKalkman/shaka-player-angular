@@ -1,5 +1,3 @@
-const amsterdam_acid_theme_manifestUri = 'https://dash.akamaized.net/dash264/TestCases/1c/qualcomm/2/MultiRate.mpd';
-
 async function init() {
   const video_blue = document.getElementById('videoPlayer');
 
@@ -15,16 +13,12 @@ async function init() {
           base: 'rgba(66, 133, 244, 0.8)',
           level: 'rgb(66, 133, 244)',
         }
-      }
+      };
 
     ui_config_blue.configure(config_blue);
-    const controls_blue = ui_config_blue.getControls();
-    const player_blue = controls_blue.getPlayer();
 
-    try {
-      await player_blue.load(amsterdam_acid_theme_manifestUri);
-    } catch (error) {
-    }
+    $('.shaka-overflow-menu-button').html('settings');
+    $('.shaka-back-to-overflow-button .material-icons-round').html('arrow_back_ios_new');
 }
 
 document.addEventListener('shaka-ui-loaded', init);

@@ -1,6 +1,7 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 
 declare let shaka: any;
+declare let $: any;
 @Component({
   selector: 'app-shaka-player',
   templateUrl: './shaka-player.component.html',
@@ -44,5 +45,9 @@ export class ShakaPlayerComponent implements AfterViewInit {
       .catch((e: any) => {
         console.error(e);
       });
+
+      var item = $('.shaka-overflow-menu-button');
+      item = item.html('settings');
+      $('.shaka-back-to-overflow-button .material-icons-round').html('arrow_back_ios_new');
   }
 }
