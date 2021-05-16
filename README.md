@@ -1,6 +1,6 @@
 # ShakaPlayerAngular
 
-![Uploading image.png…]()
+ss Screenshot 2021-05-16 at 14.40.31.jpg![image](https://user-images.githubusercontent.com/124125/118398259-1c1d6d80-b658-11eb-96e1-98c26ad82080.png)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.0. It shows how to integrate Shaka Player into an Angular application. 
 
