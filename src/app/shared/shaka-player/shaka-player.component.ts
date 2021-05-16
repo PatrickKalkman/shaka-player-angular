@@ -2,7 +2,6 @@ import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { Platform } from '@angular/cdk/platform';
 
 declare let shaka: any;
-declare let $: any;
 @Component({
   selector: 'app-shaka-player',
   templateUrl: './shaka-player.component.html',
