@@ -79,8 +79,8 @@ export class ShakaPlayerComponent implements AfterViewInit {
     this.player
       .load(videoUrl)
       .then(() => {
-        this.player.addTextTrackAsync(captionUrlEn, "en", "subtitle", 'text/vtt').then(() => {
-          this.player.addTextTrackAsync(captionUrlEs, "es", "subtitle", 'text/vtt').then(() => {
+        this.player.addTextTrackAsync(captionUrlEn, "en", "subtitles", 'text/vtt').then(() => {
+          this.player.addTextTrackAsync(captionUrlEs, "es", "subtitles", 'text/vtt').then(() => {
             const textTracks = this.player.getTextTracks();
             if (textTracks.length > 0) {
               this.player.setTextTrackVisibility(true);
